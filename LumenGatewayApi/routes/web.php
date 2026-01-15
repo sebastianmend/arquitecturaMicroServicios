@@ -11,22 +11,31 @@
 |
 */
 
-    /**
-     * Authors routes
-     */
-    $router->get('/authors', 'AuthorController@index');
-    $router->post('/authors', 'AuthorController@store');
-    $router->get('/authors/{author}', 'AuthorController@show');
-    $router->put('/authors/{author}', 'AuthorController@update');
-    $router->patch('/authors/{author}', 'AuthorController@update');
-    $router->delete('/authors/{author}', 'AuthorController@destroy');
+/**
+ * Authors routes
+ */
+$router->get('/authors', 'AuthorController@index');
+$router->post('/authors', 'AuthorController@store');
+$router->get('/authors/{author}', 'AuthorController@show');
+$router->put('/authors/{author}', 'AuthorController@update');
+$router->patch('/authors/{author}', 'AuthorController@update');
+$router->delete('/authors/{author}', 'AuthorController@destroy');
 
-    /**
-     * Books routes
-     */
-    $router->get('/books', 'BookController@index');
-    $router->post('/books', 'BookController@store');
-    $router->get('/books/{book}', 'BookController@show');
-    $router->put('/books/{book}', 'BookController@update');
-    $router->patch('/books/{book}', 'BookController@update');
-    $router->delete('/books/{book}', 'BookController@destroy');
+/**
+ * Books routes
+ */
+$router->get('/books', 'BookController@index');
+$router->post('/books', 'BookController@store');
+$router->get('/books/{book}', 'BookController@show');
+$router->put('/books/{book}', 'BookController@update');
+$router->patch('/books/{book}', 'BookController@update');
+$router->delete('/books/{book}', 'BookController@destroy');
+
+/**
+ * Search routes
+ */
+$router->group(['prefix' => 'search'], function () use ($router) {
+    $router->get('/', 'SearchController@index');
+    $router->get('/books', 'SearchController@searchBooks');
+    $router->get('/authors', 'SearchController@searchAuthors');
+});
